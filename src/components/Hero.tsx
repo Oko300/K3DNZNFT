@@ -96,11 +96,12 @@ const Hero = () => {
           className="w-full lg:w-1/2 flex justify-center lg:justify-end mt-8 lg:mt-0"
           variants={itemVariants}
         >
-          <div className="relative w-full max-w-md aspect-square bg-[#0A0A0A] border-4 border-[#FF4500] border-dashed comic-panel flex items-center justify-center p-4">
-            <div className="absolute inset-0 bg-gradient-to-br from-[#FF4500]/20 to-transparent"></div>
-            <p className="font-marker text-3xl text-[#F0EDE8] text-center z-10">
-              K3DN #0001 <span role="img" aria-label="skull">💀</span>
-            </p>
+          <div className="relative flex-1 flex items-center justify-center">
+            <div style={{border: '2px dashed #FF4500', background: '#111', padding: '2rem', borderRadius: '8px', minHeight: '400px', minWidth: '350px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1rem'}}>
+              <div style={{fontSize: '4rem'}}>💀</div>
+              <div style={{fontFamily: 'var(--font-bebas)', fontSize: '1.5rem', color: '#FF4500', letterSpacing: '0.2em'}}>K3DN #0001</div>
+              <div style={{fontFamily: 'var(--font-bebas)', fontSize: '0.8rem', color: '#555', letterSpacing: '0.3em'}}>ARTWORK LOADING...</div>
+            </div>
           </div>
         </motion.div>
       </motion.div>

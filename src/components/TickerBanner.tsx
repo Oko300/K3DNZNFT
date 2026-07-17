@@ -7,7 +7,7 @@ const TickerBanner = () => {
     "K3DNZ ✦ 10,000 DEGENS ✦ NO ROADMAP ✦ BUY THE TOP ✦ FREE MINT ✦ APE FIRST ✦ ETHEREUM ✦ ";
 
   return (
-    <div className="py-3 overflow-hidden bg-diagonal-stripes">
+    <div className="py-3 overflow-hidden" style={{ background: 'repeating-linear-gradient(45deg, #1a0a00 0px, #1a0a00 10px, #220d00 10px, #220d00 20px)' }}>
       <motion.div
         className="flex"
         animate={{
