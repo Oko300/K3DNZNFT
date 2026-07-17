@@ -3,70 +3,58 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 
-const nftCards = [
-  { id: 1, color: "bg-[#2A1A0A]", trait: "UNHINGED" },
-  { id: 2, color: "bg-[#1A0A0A]", trait: "CHAOTIC" },
-  { id: 3, color: "bg-[#0A1A2A]", trait: "BROKEN" },
-  { id: 4, color: "bg-[#2A1A0A]", trait: "DEGEN" },
-  { id: 5, color: "bg-[#1A0A0A]", trait: "REJECTED" },
-  { id: 6, color: "bg-[#0A1A2A]", trait: "APED" },
-  { id: 7, color: "bg-[#2A1A0A]", trait: "RUGGED" },
-  { id: 8, color: "bg-[#1A0A0A]", trait: "GLITCHED" },
-];
+const nftCards = Array.from({ length: 16 }, (_, i) => ({
+  id: i + 1,
+  color: "bg-[#0A0A0A]", // Dark background for polaroid
+  trait: "DEGEN", // Placeholder trait
+}));
 
 const Gallery = () => {
   return (
-    <section id="gallery" className="bg-k3d-black py-24 text-k3d-light">
+    <section id="gallery" className="bg-[#0A0A0A] py-24 text-[#F0EDE8]">
       <div className="container mx-auto px-4 text-center mb-16">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="font-bebas-neue text-6xl text-white mb-4"
+          className="font-bebas text-6xl text-[#F0EDE8] mb-4"
         >
-          THE K3DNZ
+          THE ROGUES GALLERY
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.5 }}
-          className="font-inter text-k3d-gray text-lg"
+          className="font-inter text-[#F0EDE8] text-lg"
         >
           10,000 UNHINGED DEGENS. PICK YOUR POISON.
         </motion.p>
       </div>
 
-      {/* Marquee Rows */}
-      <div className="overflow-hidden py-8">
-        {/* Row 1: Scrolls Left */}
-        <div className="flex marquee-left mb-8">
-          {[...nftCards, ...nftCards].map((nft, index) => (
-            <div
-              key={`marquee-1-${index}`}
-              className="flex-shrink-0 w-[200px] h-[200px] bg-k3d-charcoal rounded-xl overflow-hidden border border-k3d-concrete hover:border-k3d-orange transition-colors mx-4"
-            >
-              <div className={`aspect-square flex items-center justify-center ${nft.color}`}>
-                <span className="font-bebas-neue text-k3d-orange text-xl">K3DN #{nft.id.toString().padStart(4, '0')}</span>
-              </div>
-              <p className="font-mono text-xs text-k3d-gray p-2">TRAIT: {nft.trait}</p>
+      {/* Gallery Grid */}
+      <div className="container mx-auto px-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-8 gap-8">
+        {nftCards.map((nft, index) => (
+          <motion.div
+            key={nft.id}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            className={`relative bg-[#F0EDE8] p-2 shadow-lg polaroid-card ${
+              nft.id % 2 === 1 ? "rotate-[-2deg]" : "rotate-[2deg]"
+            }`}
+          >
+            <div className="aspect-square bg-[#0A0A0A] flex items-center justify-center border border-dashed border-[#FF4500]">
+              <span className="font-bebas text-[#FFB800] text-xl">
+                K3DN #{nft.id.toString().padStart(4, "0")}
+              </span>
             </div>
-          ))}
-        </div>
-
-        {/* Row 2: Scrolls Right */}
-        <div className="flex marquee-right">
-          {[...nftCards, ...nftCards].map((nft, index) => (
-            <div
-              key={`marquee-2-${index}`}
-              className="flex-shrink-0 w-[200px] h-[200px] bg-k3d-charcoal rounded-xl overflow-hidden border border-k3d-concrete hover:border-k3d-orange transition-colors mx-4"
-            >
-              <div className={`aspect-square flex items-center justify-center ${nft.color}`}>
-                <span className="font-bebas-neue text-k3d-orange text-xl">K3DN #{nft.id.toString().padStart(4, '0')}</span>
-              </div>
-              <p className="font-mono text-xs text-k3d-gray p-2">TRAIT: {nft.trait}</p>
+            <div className="p-2 text-center">
+              <p className="font-marker text-sm text-[#0A0A0A]">
+                {nft.trait}
+              </p>
             </div>
-          ))}
-        </div>
+          </motion.div>
+        ))}
       </div>
 
       {/* View Collection Button */}
@@ -76,7 +64,7 @@ const Gallery = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.5 }}
-            className="border border-k3d-orange/50 text-k3d-orange hover:bg-k3d-orange/10 font-bebas-neue text-lg px-10 py-3 transition-colors"
+            className="border-2 border-[#FF4500] text-[#FF4500] hover:bg-[#FF4500]/20 font-bebas text-lg px-10 py-3 transition-colors cracked-border"
           >
             VIEW FULL COLLECTION ON OPENSEA
           </motion.button>

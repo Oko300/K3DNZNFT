@@ -13,31 +13,37 @@ const Story = () => {
   };
 
   return (
-    <section className="w-full bg-[#111111] py-32 text-k3d-light">
-      <div className="container mx-auto px-4 flex flex-col md:flex-row gap-16">
+    <section className="relative w-full bg-[#0A0A0A] py-32 text-[#F0EDE8] overflow-hidden">
+      {/* Large cracked number "10K" as background watermark */}
+      <h2 className="absolute top-1/2 right-0 -translate-y-1/2 font-bebas text-[25vw] text-[#F0EDE8] opacity-5 pointer-events-none whitespace-nowrap z-0 cracked-text">
+        10K
+      </h2>
+
+      <div className="container mx-auto px-4 flex flex-col md:flex-row gap-16 relative z-10">
         {/* Left Column: Lore */}
         <div className="w-full md:w-1/2">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="font-permanent-marker text-k3d-orange text-sm tracking-widest mb-4"
+            className="font-marker text-[#FF4500] text-sm tracking-widest mb-4 relative spray-paint-effect"
           >
-            THE LORE
+            BORN BROKE. DIED DEGEN.
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.5 }}
-            className="font-bebas-neue text-5xl text-white leading-tight mb-8"
+            className="font-bebas text-5xl text-[#F0EDE8] leading-tight mb-8"
           >
-            BORN FROM BAD DECISIONS.
+            <span className="text-[#FF4500]">NOBODY</span> KNOWS WHERE WE CAME
+            FROM.
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.5 }}
-            className="font-inter text-k3d-gray text-base leading-relaxed mb-6"
+            className="font-inter text-[#F0EDE8] text-base leading-relaxed mb-6"
           >
             Nobody knows where the K3DNZ came from. Some say they escaped a
             broken smart contract. Others swear they were rejected from every
@@ -48,7 +54,7 @@ const Story = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.5 }}
-            className="font-inter text-k3d-gray text-base leading-relaxed mb-6"
+            className="font-inter text-[#F0EDE8] text-base leading-relaxed mb-6"
           >
             There are 10,000 K3DNZ roaming Ethereum, surviving purely on bad
             decisions, zero plans, and unlimited confidence. They don't chase
@@ -59,7 +65,7 @@ const Story = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.0, duration: 0.5 }}
-            className="font-inter text-k3d-gray text-base leading-relaxed mb-8"
+            className="font-inter text-[#F0EDE8] text-base leading-relaxed mb-8"
           >
             They buy tops. They celebrate rugs. They ape first and ask questions
             never.
@@ -68,7 +74,7 @@ const Story = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.2, duration: 0.5 }}
-            className="font-bebas-neue text-2xl text-k3d-orange"
+            className="font-bebas text-2xl text-[#FFB800]"
           >
             WELCOME TO K3DNZ. LEAVE YOUR BRAIN AT THE DOOR.
           </motion.p>
@@ -81,11 +87,11 @@ const Story = () => {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             transition={{ delay: 0.2 }}
-            className="bg-k3d-charcoal border border-k3d-concrete rounded-lg p-6 hover:border-k3d-orange transition-colors"
+            className="bg-[#0A0A0A] border-l-4 border-[#CC0000] p-6 hover:border-[#FF4500] transition-colors shadow-lg"
           >
-            <p className="text-k3d-fire text-4xl mb-4">🔥</p>
-            <h3 className="font-bebas-neue text-2xl text-white mb-2">NO UTILITY</h3>
-            <p className="font-inter text-k3d-gray text-sm">
+            <p className="text-[#FF4500] text-4xl mb-4">🔥</p>
+            <h3 className="font-bebas text-2xl text-[#F0EDE8] mb-2">NO UTILITY</h3>
+            <p className="font-inter text-[#F0EDE8] text-sm">
               We don't have a roadmap. We ate it.
             </p>
           </motion.div>
@@ -94,11 +100,11 @@ const Story = () => {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             transition={{ delay: 0.4 }}
-            className="bg-k3d-charcoal border border-k3d-concrete rounded-lg p-6 hover:border-k3d-orange transition-colors"
+            className="bg-[#0A0A0A] border-l-4 border-[#CC0000] p-6 hover:border-[#FF4500] transition-colors shadow-lg"
           >
-            <p className="text-k3d-fire text-4xl mb-4">💀</p>
-            <h3 className="font-bebas-neue text-2xl text-white mb-2">NO PROMISES</h3>
-            <p className="font-inter text-k3d-gray text-sm">
+            <p className="text-[#FF4500] text-4xl mb-4">💀</p>
+            <h3 className="font-bebas text-2xl text-[#F0EDE8] mb-2">NO PROMISES</h3>
+            <p className="font-inter text-[#F0EDE8] text-sm">
               We lied about having no promises.
             </p>
           </motion.div>
@@ -107,11 +113,11 @@ const Story = () => {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             transition={{ delay: 0.6 }}
-            className="bg-k3d-charcoal border border-k3d-concrete rounded-lg p-6 hover:border-k3d-orange transition-colors"
+            className="bg-[#0A0A0A] border-l-4 border-[#CC0000] p-6 hover:border-[#FF4500] transition-colors shadow-lg"
           >
-            <p className="text-k3d-fire text-4xl mb-4">🎯</p>
-            <h3 className="font-bebas-neue text-2xl text-white mb-2">BUY TOPS</h3>
-            <p className="font-inter text-k3d-gray text-sm">
+            <p className="text-[#FF4500] text-4xl mb-4">🎯</p>
+            <h3 className="font-bebas text-2xl text-[#F0EDE8] mb-2">BUY TOPS</h3>
+            <p className="font-inter text-[#F0EDE8] text-sm">
               It's not a bug. It's the whole point.
             </p>
           </motion.div>
@@ -120,11 +126,11 @@ const Story = () => {
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
             transition={{ delay: 0.8 }}
-            className="bg-k3d-charcoal border border-k3d-concrete rounded-lg p-6 hover:border-k3d-orange transition-colors"
+            className="bg-[#0A0A0A] border-l-4 border-[#CC0000] p-6 hover:border-[#FF4500] transition-colors shadow-lg"
           >
-            <p className="text-k3d-fire text-4xl mb-4">⚡</p>
-            <h3 className="font-bebas-neue text-2xl text-white mb-2">APE FIRST</h3>
-            <p className="font-inter text-k3d-gray text-sm">
+            <p className="text-[#FF4500] text-4xl mb-4">⚡</p>
+            <h3 className="font-bebas text-2xl text-[#F0EDE8] mb-2">APE FIRST</h3>
+            <p className="font-inter text-[#F0EDE8] text-sm">
               Questions are for people with plans.
             </p>
           </motion.div>

@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 
 const TickerBanner = () => {
   const textContent =
-    "K3DNZ • 10,000 DEGENS • NO ROADMAP • NO UTILITY • JUST VIBES • BUY THE TOP • APE IN • ETHEREUM • ";
+    "K3DNZ ✦ 10,000 DEGENS ✦ NO ROADMAP ✦ BUY THE TOP ✦ FREE MINT ✦ APE FIRST ✦ ETHEREUM ✦ ";
 
   return (
-    <div className="bg-k3d-orange py-3 overflow-hidden">
+    <div className="py-3 overflow-hidden bg-diagonal-stripes">
       <motion.div
         className="flex"
         animate={{
@@ -22,10 +22,10 @@ const TickerBanner = () => {
           },
         }}
       >
-        <span className="font-bebas-neue text-black tracking-widest text-sm whitespace-nowrap px-4">
+        <span className="font-bebas text-[#FFB800] tracking-widest text-sm whitespace-nowrap px-4">
           {textContent}
         </span>
-        <span className="font-bebas-neue text-black tracking-widest text-sm whitespace-nowrap px-4">
+        <span className="font-bebas text-[#FFB800] tracking-widest text-sm whitespace-nowrap px-4">
           {textContent}
         </span>
       </motion.div>
