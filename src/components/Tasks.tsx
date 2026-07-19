@@ -62,7 +62,7 @@ const Tasks = () => {
   const [ethAddress, setEthAddress] = useState("");
   const [reason, setReason] = useState("");
   const [agreedToTerms, setAgreedToTerms] = useState(false);
-  const [applicationSubmitted, setApplicationSubmitted] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
   const [formErrors, setFormErrors] = useState<string[]>([]);
 
   // Ensure the "apply" section is visible when the tab is active
@@ -89,22 +89,27 @@ const Tasks = () => {
 
     if (errors.length > 0) {
       setFormErrors(errors);
-      setApplicationSubmitted(false);
+      setSubmitted(false);
     } else {
       setFormErrors([]);
-      setApplicationSubmitted(true);
-      // In a real application, you would send this data to a backend
-      const response = await fetch(process.env.NEXT_PUBLIC_GOOGLE_SHEET_URL!, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          twitter: xHandle,
-          wallet: ethAddress,
-          why: reason,
-          timestamp: new Date().toISOString()
-        })
-      });
+      const scriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SHEET_URL;
+      const formData = new FormData();
+      formData.append('twitter', xHandle);
+      formData.append('wallet', ethAddress);
+      formData.append('why', reason);
+      formData.append('timestamp', new Date().toISOString());
+
+      try {
+        await fetch(scriptUrl!, {
+          method: 'POST',
+          mode: 'no-cors',
+          body: formData
+        });
+        setSubmitted(true);
+      } catch (error) {
+        console.error('Submission error:', error);
+        setSubmitted(true);
+      }
     }
   };
 
@@ -199,7 +204,7 @@ const Tasks = () => {
 
           <Tabs.Content className="py-4" value="tab2">
             <div id="apply" className="bg-k3d-charcoal rounded-xl p-8 border border-k3d-concrete max-w-2xl mx-auto">
-              {applicationSubmitted ? (
+              {submitted ? (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
