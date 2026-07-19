@@ -81,7 +81,7 @@ const Tasks = () => {
     );
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const errors: string[] = [];
     if (!xHandle) errors.push("X (Twitter) Handle is required.");
     if (!ethAddress) errors.push("ETH Wallet Address is required.");
@@ -94,7 +94,17 @@ const Tasks = () => {
       setFormErrors([]);
       setApplicationSubmitted(true);
       // In a real application, you would send this data to a backend
-      console.log({ xHandle, ethAddress, reason, agreedToTerms });
+      const response = await fetch(process.env.NEXT_PUBLIC_GOOGLE_SHEET_URL!, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          twitter: xHandle,
+          wallet: ethAddress,
+          why: reason,
+          timestamp: new Date().toISOString()
+        })
+      });
     }
   };
 
