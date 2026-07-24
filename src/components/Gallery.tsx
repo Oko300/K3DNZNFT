@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import Image from "next/image";
 
 const nftImages = [
   { src: '/images/k3dnz-1.png', id: '0001' },
@@ -46,11 +45,10 @@ const Gallery = () => {
               className="w-[200px] h-[200px] border-2 border-[#FF5C00] rounded-lg overflow-hidden mx-3 flex-shrink-0 flex flex-col items-center justify-center"
             >
               <div className="relative w-full h-[calc(100%-24px)]">
-                <Image
+                <img
                   src={nft.src}
                   alt={`K3DN #${nft.id}`}
-                  layout="fill"
-                  objectFit="cover"
+                  style={{width: '100%', height: '100%', objectFit: 'cover', display: 'block'}}
                 />
               </div>
               <p className="font-bebas text-[#FF5C00] text-sm text-center mt-1">
@@ -65,11 +63,10 @@ const Gallery = () => {
               className="w-[200px] h-[200px] border-2 border-[#FF5C00] rounded-lg overflow-hidden mx-3 flex-shrink-0 flex flex-col items-center justify-center"
             >
               <div className="relative w-full h-[calc(100%-24px)]">
-                <Image
+                <img
                   src={nft.src}
                   alt={`K3DN #${nft.id}`}
-                  layout="fill"
-                  objectFit="cover"
+                  style={{width: '100%', height: '100%', objectFit: 'cover', display: 'block'}}
                 />
               </div>
               <p className="font-bebas text-[#FF5C00] text-sm text-center mt-1">

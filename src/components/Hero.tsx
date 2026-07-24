@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import Image from "next/image";
 
 const Hero = () => {
   const containerVariants = {
@@ -21,7 +20,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative h-screen bg-[#0A0A0A] text-[#F0EDE8] flex items-center overflow-hidden">
+    <section className="relative min-h-screen bg-[#0A0A0A] text-[#F0EDE8] flex flex-col justify-between pt-[120px] px-16 pb-8 overflow-hidden">
       {/* Background with animated particles */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute inset-0 bg-cracked-concrete opacity-10"></div>
@@ -47,13 +46,13 @@ const Hero = () => {
       </h2>
 
       <motion.div
-        className="container mx-auto px-4 flex flex-col lg:flex-row items-center justify-between relative z-10 w-full"
+        className="container mx-auto flex flex-col lg:flex-row items-center justify-between relative z-10 w-full flex-grow"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
         {/* Left Side: Hero Text and Buttons */}
-        <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left mb-12 lg:mb-0">
+        <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start text-center lg:text-left mb-8 lg:mb-0">
           <motion.span
             className="bg-[#CC0000] text-[#F0EDE8] font-marker text-sm px-3 py-1 uppercase tracking-widest mb-4 inline-block spray-paint-effect"
             variants={itemVariants}
@@ -93,32 +92,28 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        {/* Right Side: K3DNZ Character Image Placeholder */}
+        {/* Right Side: K3DNZ Character Image */}
         <motion.div
           className="w-full lg:w-1/2 flex justify-center lg:justify-end mt-8 lg:mt-0"
           variants={itemVariants}
         >
-          <div className="relative flex-1 flex items-center justify-center">
-            <div className="relative w-[350px] h-[400px] border-2 border-[#FF4500] bg-[#111] rounded-lg overflow-hidden flex items-center justify-center">
-              <Image
-                src="/images/k3dnz-1.png"
-                alt="K3DNZ #0001"
-                layout="fill"
-                objectFit="cover"
-                className="rounded-lg"
-              />
-              <div className="absolute bottom-4 text-center">
-                <p style={{fontFamily: 'var(--font-bebas)'}} className="text-xl text-[#FF4500] tracking-widest">
-                  K3DN #0001
-                </p>
-              </div>
+          <div className="relative w-[350px] h-[400px] border-2 border-[#FF4500] bg-[#111] rounded-lg overflow-hidden flex items-center justify-center">
+            <img
+              src="/images/k3dnz-1.png"
+              alt="K3DNZ #0001"
+              style={{width: '100%', height: '100%', objectFit: 'cover', display: 'block'}}
+            />
+            <div className="absolute bottom-4 text-center">
+              <p style={{fontFamily: 'var(--font-bebas)'}} className="text-xl text-[#FF4500] tracking-widest">
+                K3DN #0001
+              </p>
             </div>
           </div>
         </motion.div>
       </motion.div>
 
       {/* Stat Bar at Bottom */}
-      <div className="absolute bottom-0 left-0 w-full bg-[#FF4500]/10 border-t border-[#FF4500]/30 py-4 text-center font-inter text-sm uppercase tracking-wider text-[#F0EDE8] z-20">
+      <div className="w-full bg-[#FF4500]/10 border-t border-[#FF4500]/30 py-4 text-center font-inter text-sm uppercase tracking-wider text-[#F0EDE8] z-20 mt-8">
         10,000 SUPPLY 🔥 FREE MINT 🔥 ETHEREUM
       </div>
     </section>
