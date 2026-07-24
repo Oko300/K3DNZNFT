@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 const Hero = () => {
   const containerVariants = {
@@ -98,10 +99,19 @@ const Hero = () => {
           variants={itemVariants}
         >
           <div className="relative flex-1 flex items-center justify-center">
-            <div style={{border: '2px dashed #FF4500', background: '#111', padding: '2rem', borderRadius: '8px', minHeight: '400px', minWidth: '350px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1rem'}}>
-              <div style={{fontSize: '4rem'}}>💀</div>
-              <div style={{fontFamily: 'var(--font-bebas)', fontSize: '1.5rem', color: '#FF4500', letterSpacing: '0.2em'}}>K3DN #0001</div>
-              <div style={{fontFamily: 'var(--font-bebas)', fontSize: '0.8rem', color: '#555', letterSpacing: '0.3em'}}>ARTWORK LOADING...</div>
+            <div className="relative w-[350px] h-[400px] border-2 border-[#FF4500] bg-[#111] rounded-lg overflow-hidden flex items-center justify-center">
+              <Image
+                src="/images/k3dnz-1.png"
+                alt="K3DNZ #0001"
+                layout="fill"
+                objectFit="cover"
+                className="rounded-lg"
+              />
+              <div className="absolute bottom-4 text-center">
+                <p style={{fontFamily: 'var(--font-bebas)'}} className="text-xl text-[#FF4500] tracking-widest">
+                  K3DN #0001
+                </p>
+              </div>
             </div>
           </div>
         </motion.div>
