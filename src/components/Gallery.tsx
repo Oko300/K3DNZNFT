@@ -44,11 +44,12 @@ const Gallery = () => {
               key={index}
               className="w-[200px] h-[200px] border-2 border-[#FF5C00] rounded-lg overflow-hidden mx-3 flex-shrink-0 flex flex-col items-center justify-center"
             >
-              <div className="relative w-full h-[calc(100%-24px)]">
+              <div className="relative w-full h-[160px]">
                 <img
-                  src={nft.src}
-                  alt={`K3DN #${nft.id}`}
+                  src={parseInt(nft.id) % 2 !== 0 ? '/images/k3dnz-1.png' : '/images/k3dnz-2.png'}
+                  alt="K3DNZ NFT"
                   style={{width: '100%', height: '100%', objectFit: 'cover', display: 'block'}}
+                  onError={(e) => { e.currentTarget.style.display = 'none' }}
                 />
               </div>
               <p className="font-bebas text-[#FF5C00] text-sm text-center mt-1">
@@ -62,11 +63,12 @@ const Gallery = () => {
               key={`duplicate-${index}`}
               className="w-[200px] h-[200px] border-2 border-[#FF5C00] rounded-lg overflow-hidden mx-3 flex-shrink-0 flex flex-col items-center justify-center"
             >
-              <div className="relative w-full h-[calc(100%-24px)]">
+              <div className="relative w-full h-[160px]">
                 <img
-                  src={nft.src}
-                  alt={`K3DN #${nft.id}`}
+                  src={parseInt(nft.id) % 2 !== 0 ? '/images/k3dnz-1.png' : '/images/k3dnz-2.png'}
+                  alt="K3DNZ NFT"
                   style={{width: '100%', height: '100%', objectFit: 'cover', display: 'block'}}
+                  onError={(e) => { e.currentTarget.style.display = 'none' }}
                 />
               </div>
               <p className="font-bebas text-[#FF5C00] text-sm text-center mt-1">
@@ -75,20 +77,6 @@ const Gallery = () => {
             </div>
           ))}
         </div>
-      </div>
-
-      {/* View Collection Button */}
-      <div className="text-center mt-16">
-        <Link href="https://opensea.io/collection/k3dnz" target="_blank" rel="noopener noreferrer">
-          <motion.button
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.5 }}
-            className="border-2 border-[#FF4500] text-[#FF4500] hover:bg-[#FF4500]/20 font-bebas text-lg px-10 py-3 transition-colors cracked-border"
-          >
-            VIEW FULL COLLECTION ON OPENSEA
-          </motion.button>
-        </Link>
       </div>
     </section>
   );

@@ -97,18 +97,14 @@ const Hero = () => {
           className="w-full lg:w-1/2 flex justify-center lg:justify-end mt-8 lg:mt-0"
           variants={itemVariants}
         >
-          <div className="relative w-[350px] h-[400px] border-2 border-[#FF4500] bg-[#111] rounded-lg overflow-hidden flex items-center justify-center">
-            <img
-              src="/images/k3dnz-1.png"
-              alt="K3DNZ #0001"
-              style={{width: '100%', height: '100%', objectFit: 'cover', display: 'block'}}
-            />
-            <div className="absolute bottom-4 text-center">
-              <p style={{fontFamily: 'var(--font-bebas)'}} className="text-xl text-[#FF4500] tracking-widest">
-                K3DN #0001
-              </p>
+            <div style={{position: 'relative', width: '100%', height: '400px', border: '2px solid #FF5C00', borderRadius: '8px', overflow: 'hidden'}}>
+              <img
+                src="/images/k3dnz-1.png"
+                alt="K3DNZ NFT"
+                style={{width: '100%', height: '100%', objectFit: 'cover'}}
+                onError={(e) => { e.currentTarget.style.display = 'none' }}
+              />
             </div>
-          </div>
         </motion.div>
       </motion.div>
 
