@@ -203,99 +203,27 @@ const Tasks = () => {
           </Tabs.Content>
 
           <Tabs.Content className="py-4" value="tab2">
-            <div id="apply" className="bg-k3d-charcoal rounded-xl p-8 border border-k3d-concrete max-w-2xl mx-auto">
-              {submitted ? (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="text-center"
-                >
-                  <h3 className="font-bebas-neue text-2xl text-k3d-orange">
-                    APPLICATION RECEIVED. WE PROBABLY WON'T READ IT. BUT MAYBE.
-                  </h3>
-                </motion.div>
-              ) : (
-                <>
-                  <div className="mb-6">
-                    <label
-                      htmlFor="xHandle"
-                      className="block font-inter text-k3d-gray text-sm mb-2"
-                    >
-                      Your X (Twitter) Handle
-                    </label>
-                    <input
-                      type="text"
-                      id="xHandle"
-                      placeholder="@your_handle"
-                      value={xHandle}
-                      onChange={(e) => setXHandle(e.target.value)}
-                      className="bg-k3d-black border border-k3d-concrete focus:border-k3d-orange text-white rounded-lg px-4 py-3 w-full outline-none"
-                    />
-                  </div>
-                  <div className="mb-6">
-                    <label
-                      htmlFor="ethAddress"
-                      className="block font-inter text-k3d-gray text-sm mb-2"
-                    >
-                      Your ETH Wallet Address
-                    </label>
-                    <input
-                      type="text"
-                      id="ethAddress"
-                      placeholder="0x..."
-                      value={ethAddress}
-                      onChange={(e) => setEthAddress(e.target.value)}
-                      className="bg-k3d-black border border-k3d-concrete focus:border-k3d-orange text-white rounded-lg px-4 py-3 w-full outline-none"
-                    />
-                  </div>
-                  <div className="mb-6">
-                    <label
-                      htmlFor="reason"
-                      className="block font-inter text-k3d-gray text-sm mb-2"
-                    >
-                      Why should we let you in? (optional)
-                    </label>
-                    <textarea
-                      id="reason"
-                      rows={4}
-                      placeholder="I have zero plans and unlimited confidence..."
-                      value={reason}
-                      onChange={(e) => setReason(e.target.value)}
-                      className="bg-k3d-black border border-k3d-concrete focus:border-k3d-orange text-white rounded-lg px-4 py-3 w-full outline-none resize-y"
-                    ></textarea>
-                  </div>
-                  <div className="mb-8 flex items-center">
-                    <input
-                      type="checkbox"
-                      id="agreedToTerms"
-                      checked={agreedToTerms}
-                      onChange={(e) => setAgreedToTerms(e.target.checked)}
-                      className="h-5 w-5 text-k3d-orange rounded border-k3d-concrete focus:ring-k3d-orange bg-k3d-black"
-                    />
-                    <label
-                      htmlFor="agreedToTerms"
-                      className="ml-3 font-inter text-k3d-gray text-sm"
-                    >
-                      I understand K3DNZ has no roadmap, no promises, and no
-                      chill
-                    </label>
-                  </div>
-                  {formErrors.length > 0 && (
-                    <div className="mb-4 text-red-500 text-sm font-inter">
-                      {formErrors.map((error, index) => (
-                        <p key={index}>{error}</p>
-                      ))}
-                    </div>
-                  )}
-                  <button
-                    onClick={handleSubmit}
-                    className="w-full bg-k3d-orange hover:bg-k3d-fire text-black font-bebas-neue text-2xl py-4 rounded-lg transition-colors"
-                  >
-                    APE IN →
-                  </button>
-                </>
-              )}
+            <div className="flex flex-col items-center justify-center py-16 px-8 text-center">
+              <div className="text-6xl mb-6">💀</div>
+              <h3 style={{fontFamily: 'var(--font-bebas)'}} className="text-4xl text-[#FF5C00] mb-4 tracking-widest">
+                THINK YOU GOT WHAT IT TAKES?
+              </h3>
+              <p className="text-[#7A7A7A] mb-4 max-w-md">
+                No promises. No roadmap. No chill. Just 10,000 beautifully broken degens.
+              </p>
+              <p className="text-[#FF5C00] text-sm mb-8 font-mono">
+                Leave your brain at the door before applying.
+              </p>
+              <button
+                onClick={() => window.open('https://docs.google.com/forms/d/e/1FAIpQLSfHji1vFpxvvagYiADSGzpAXq1jYG9wRryoaiq4IjHkusjbCA/viewform?usp=publish-editor', '_blank')}
+                className="bg-[#FF5C00] hover:bg-[#FF8C00] text-black font-bold px-12 py-4 text-2xl tracking-widest transition-colors cursor-pointer border-none"
+                style={{fontFamily: 'var(--font-bebas)'}}
+              >
+                APE IN →
+              </button>
+              <p className="text-[#3A3A3A] text-xs mt-6 font-mono">
+                WE PROBABLY WON'T READ IT. BUT MAYBE.
+              </p>
             </div>
           </Tabs.Content>
         </Tabs.Root>
