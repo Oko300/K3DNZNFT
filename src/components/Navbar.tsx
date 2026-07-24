@@ -54,7 +54,7 @@ const Navbar = () => {
           <button onClick={() => scrollToSection("tasks")} className="font-marker uppercase tracking-widest text-[#F0EDE8] text-lg hover:text-[#FFB800] transition-colors stencil-text">
             TASKS
           </button>
-          <button onClick={() => scrollToSection("get-wl")} className="font-marker uppercase tracking-widest text-[#F0EDE8] text-lg hover:text-[#FFB800] transition-colors stencil-text">
+          <button onClick={() => scrollToSection("tasks")} className="font-marker uppercase tracking-widest text-[#F0EDE8] text-lg hover:text-[#FFB800] transition-colors stencil-text">
             GET WL
           </button>
         </div>
@@ -96,7 +96,7 @@ const Navbar = () => {
             <button onClick={() => scrollToSection("tasks")} className="font-marker text-3xl uppercase tracking-widest text-[#F0EDE8] hover:text-[#FFB800] transition-colors stencil-text">
               TASKS
             </button>
-            <button onClick={() => scrollToSection("get-wl")} className="font-marker text-3xl uppercase tracking-widest text-[#F0EDE8] hover:text-[#FFB800] transition-colors stencil-text">
+            <button onClick={() => scrollToSection("tasks")} className="font-marker text-3xl uppercase tracking-widest text-[#F0EDE8] hover:text-[#FFB800] transition-colors stencil-text">
               GET WL
             </button>
             <button className="font-bebas text-2xl border-2 border-[#FF4500] text-[#FF4500] hover:bg-[#FF4500] hover:text-[#0A0A0A] transition px-8 py-3 mt-8 cracked-border" onClick={toggleMenu}>

@@ -2,12 +2,30 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
-const nftCards = Array.from({ length: 16 }, (_, i) => ({
-  id: i + 1,
-  color: "bg-[#0A0A0A]", // Dark background for polaroid
-  trait: "DEGEN", // Placeholder trait
-}));
+const images = [
+  "/images/k3dnz-1.png.jpeg",
+  "/images/k3dnz-2.png.jpeg",
+];
+
+const totalCards = 4; // We need 4 cards as per the requirement
+const nftCards = Array.from({ length: totalCards }, (_, i) => {
+  if (images[i]) {
+    return {
+      id: i + 1,
+      src: images[i],
+      alt: `K3DNZ #${(i + 1).toString().padStart(4, "0")}`,
+      type: "image",
+    };
+  } else {
+    return {
+      id: i + 1,
+      type: "placeholder",
+      title: `K3DN #${(i + 1).toString().padStart(4, "0")}`,
+    };
+  }
+});
 
 const Gallery = () => {
   return (
@@ -39,20 +57,35 @@ const Gallery = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className={`relative bg-[#F0EDE8] p-2 shadow-lg polaroid-card ${
+            className={`relative p-2 shadow-lg polaroid-card ${
               nft.id % 2 === 1 ? "rotate-[-2deg]" : "rotate-[2deg]"
-            }`}
+            } ${nft.type === "placeholder" ? "bg-[#1A0A00] border-2 border-[#FF5C00]" : "bg-[#F0EDE8]"}`}
           >
-            <div className="aspect-square bg-[#0A0A0A] flex items-center justify-center border border-dashed border-[#FF4500]">
-              <span className="font-bebas text-[#FFB800] text-xl">
-                K3DN #{nft.id.toString().padStart(4, "0")}
-              </span>
-            </div>
-            <div className="p-2 text-center">
-              <p className="font-marker text-sm text-[#0A0A0A]">
-                {nft.trait}
-              </p>
-            </div>
+            {nft.type === "image" ? (
+              <>
+                <div className="aspect-square relative">
+                  <Image
+                    src={nft.src!}
+                    alt={nft.alt!}
+                    layout="fill"
+                    objectFit="cover"
+                    className="rounded"
+                  />
+                </div>
+                <div className="p-2 text-center">
+                  <p className="font-marker text-sm text-[#0A0A0A]">
+                    {nft.alt}
+                  </p>
+                </div>
+              </>
+            ) : (
+              <div className="aspect-square flex flex-col items-center justify-center">
+                <div className="text-6xl mb-2">💀</div>
+                <div style={{fontFamily: 'var(--font-bebas)'}} className="text-xl text-[#FF5C00] tracking-widest">
+                  {nft.title}
+                </div>
+              </div>
+            )}
           </motion.div>
         ))}
       </div>

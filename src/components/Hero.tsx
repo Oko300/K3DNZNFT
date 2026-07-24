@@ -78,11 +78,12 @@ const Hero = () => {
             className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 mb-8"
             variants={itemVariants}
           >
-            <Link href="/wl-apply">
-              <button className="bg-[#FF4500] text-[#0A0A0A] font-bebas text-xl px-8 py-4 hover:bg-[#FFB800] transition-colors cracked-button">
-                APE IN — APPLY FOR WL
-              </button>
-            </Link>
+            <button
+              onClick={() => document.getElementById('tasks')?.scrollIntoView({behavior: 'smooth'})}
+              className="bg-[#FF4500] text-[#0A0A0A] font-bebas text-xl px-8 py-4 hover:bg-[#FFB800] transition-colors cracked-button"
+            >
+              APE IN — APPLY FOR WL
+            </button>
             <Link href="/story">
               <button className="border-2 border-[#FF4500] text-[#FF4500] font-bebas text-xl px-8 py-4 hover:bg-[#FF4500]/20 transition-colors cracked-border">
                 READ THE CHAOS

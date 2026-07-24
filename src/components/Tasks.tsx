@@ -3,13 +3,12 @@
 import { motion } from "framer-motion";
 import * as Tabs from "@radix-ui/react-tabs";
 import { useState } from "react";
-import { CheckCircle, X, Repeat2, MessageSquareQuote, Users, Image, Link as LinkIcon } from "lucide-react";
+import { CheckCircle, X, Repeat2, MessageSquareQuote, Users } from "lucide-react";
 
 const tasks = [
   {
     id: 1,
     name: "Follow @K3DNZ on X",
-    points: 100,
     icon: <X size={24} />,
     action: "FOLLOW",
     link: "https://x.com/k3dnz?s=21",
@@ -17,105 +16,56 @@ const tasks = [
   {
     id: 2,
     name: "Retweet our pinned post",
-    points: 150,
     icon: <Repeat2 size={24} />,
     action: "RETWEET",
-    link: "#",
+    link: "https://x.com/k3dnz?s=21",
   },
   {
     id: 3,
     name: "Quote tweet with #K3DNZ",
-    points: 200,
     icon: <MessageSquareQuote size={24} />,
     action: "QUOTE TWEET",
-    link: "#",
+    link: "https://x.com/k3dnz?s=21",
   },
   {
     id: 4,
     name: "Tag 3 degens in our post",
-    points: 250,
     icon: <Users size={24} />,
     action: "TAG NOW",
-    link: "#",
-  },
-  {
-    id: 5,
-    name: "Share a K3DNZ meme",
-    points: 300,
-    icon: <Image size={24} />,
-    action: "SHARE",
-    link: "#",
-  },
-  {
-    id: 6,
-    name: "Join our Discord",
-    points: 100,
-    icon: <LinkIcon size={24} />,
-    action: "JOIN",
-    link: "#",
+    link: "https://x.com/k3dnz?s=21",
   },
 ];
 
 const Tasks = () => {
   const [completedTasks, setCompletedTasks] = useState<number[]>([]);
-  const [xHandle, setXHandle] = useState("");
-  const [ethAddress, setEthAddress] = useState("");
-  const [reason, setReason] = useState("");
-  const [agreedToTerms, setAgreedToTerms] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
-  const [formErrors, setFormErrors] = useState<string[]>([]);
+  const [showConfirmationInput, setShowConfirmationInput] = useState(false);
+  const [confirmationInput, setConfirmationInput] = useState("");
 
-  // Ensure the "apply" section is visible when the tab is active
   const handleTabChange = (value: string) => {
-    if (value === "tab2") {
-      const element = document.getElementById("apply");
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    }
+    // No specific scroll logic needed here for "apply" tab as it's now a button
   };
 
-  const handleTaskComplete = (id: number) => {
-    setCompletedTasks((prev) =>
-      prev.includes(id) ? prev.filter((taskId) => taskId !== id) : [...prev, id]
-    );
-  };
-
-  const handleSubmit = async () => {
-    const errors: string[] = [];
-    if (!xHandle) errors.push("X (Twitter) Handle is required.");
-    if (!ethAddress) errors.push("ETH Wallet Address is required.");
-    if (!agreedToTerms) errors.push("You must agree to the terms.");
-
-    if (errors.length > 0) {
-      setFormErrors(errors);
-      setSubmitted(false);
+  const handleTaskAction = (id: number, link: string) => {
+    window.open(link, '_blank');
+    if (id === 1) { // For "Follow @K3DNZ on X"
+      setShowConfirmationInput(true);
     } else {
-      setFormErrors([]);
-      const scriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SHEET_URL;
-      const formData = new FormData();
-      formData.append('twitter', xHandle);
-      formData.append('wallet', ethAddress);
-      formData.append('why', reason);
-      formData.append('timestamp', new Date().toISOString());
-
-      try {
-        await fetch(scriptUrl!, {
-          method: 'POST',
-          mode: 'no-cors',
-          body: formData
-        });
-        setSubmitted(true);
-      } catch (error) {
-        console.error('Submission error:', error);
-        setSubmitted(true);
-      }
+      setCompletedTasks((prev) =>
+        prev.includes(id) ? prev.filter((taskId) => taskId !== id) : [...prev, id]
+      );
     }
+  };
+
+  const handleConfirmationSubmit = () => {
+    // For this task, we'll just mark it as complete after confirmation input
+    setCompletedTasks((prev) => [...prev, 1]);
+    setShowConfirmationInput(false);
+    setConfirmationInput("");
   };
 
   return (
     <section id="tasks" className="bg-[#111111] py-24 text-k3d-light">
-      <div className="container mx-auto px-4 text-center mb-16">
+      <div id="tasks-content" className="container mx-auto px-4 text-center mb-16">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -172,15 +122,12 @@ const Tasks = () => {
                         {task.name}
                       </h3>
                     </div>
-                    <div className="flex justify-between items-center">
-                      <span className="bg-k3d-orange/20 text-k3d-orange text-xs px-2 py-1 rounded font-mono">
-                        {task.points} POINTS
-                      </span>
+                    <div className="flex justify-end items-center">
                       <a
                         href={task.link}
                         target="_blank"
                         rel="noopener noreferrer"
-                        onClick={() => handleTaskComplete(task.id)}
+                        onClick={() => handleTaskAction(task.id, task.link)}
                         className={`font-bebas-neue text-sm px-4 py-2 rounded-lg transition-colors ${
                           isCompleted
                             ? "bg-green-600 text-white"
@@ -200,6 +147,29 @@ const Tasks = () => {
                 );
               })}
             </div>
+            {showConfirmationInput && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="mt-8 bg-k3d-charcoal rounded-xl p-6 border border-k3d-concrete max-w-md mx-auto"
+              >
+                <h3 className="font-bebas-neue text-xl text-white mb-4">Confirm X Handle</h3>
+                <input
+                  type="text"
+                  placeholder="Enter your X handle to confirm"
+                  value={confirmationInput}
+                  onChange={(e) => setConfirmationInput(e.target.value)}
+                  className="bg-k3d-black border border-k3d-concrete focus:border-k3d-orange text-white rounded-lg px-4 py-3 w-full outline-none mb-4"
+                />
+                <button
+                  onClick={handleConfirmationSubmit}
+                  className="w-full bg-k3d-orange hover:bg-k3d-fire text-black font-bebas-neue text-xl py-3 rounded-lg transition-colors"
+                >
+                  CONFIRM
+                </button>
+              </motion.div>
+            )}
           </Tabs.Content>
 
           <Tabs.Content className="py-4" value="tab2">
